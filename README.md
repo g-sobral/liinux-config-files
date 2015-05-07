@@ -1,2 +1,2 @@
-# liinux-config-files
+# linux-config-files
 Personal linux config files
