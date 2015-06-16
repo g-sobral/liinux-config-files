@@ -64,6 +64,8 @@ else
   export EDITOR='mvim'
 fi
 
+xset b off
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

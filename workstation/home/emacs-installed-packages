@@ -1,0 +1,8 @@
+package-activated-list's value is
+(auto-complete popup auto-complete popup popup ac-js2 skewer-mode js2-mode simple-httpd js2-mode auto-complete popup base16-theme bs-ext column-enforce-mode paredit-everywhere paredit popup skewer-mode js2-mode simple-httpd)
+
+
+  This variable may be risky if used as a file-local variable.
+
+Documentation:
+List of the names of currently activated packages.

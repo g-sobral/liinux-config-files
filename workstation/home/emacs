@@ -1,0 +1,105 @@
+;; Configure MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#1d1f21" "#CC342B" "#198844" "#FBA922" "#3971ED" "#A36AC7" "#3971ED" "#c5c8c6"])
+ '(ansi-term-color-vector
+   [unspecified "#1d1f21" "#CC342B" "#198844" "#FBA922" "#3971ED" "#A36AC7" "#3971ED" "#c5c8c6"])
+ '(custom-enabled-themes (quote (base16-default-dark)))
+ '(custom-safe-themes
+   (quote
+    ("e7ec0cc3ce134cc0bd420b98573bbd339a908ac24162b8034c98e1ba5ee1f9f6" "17f35b689dd41e49cb740bfb810ac8a53d13292cbebf68f41f772787d8b3aebf" "d72836155cd3b3e52fd86a9164120d597cbe12a67609ab90effa54710b2ac53b" "54a8c782a7a66e9aeb542af758f7f9f1a5702b956f425ffe15fccf5339f01f1e" "5d139820639cd941c60033dcdd462bf5fffa76da549e6bdf1d83945803d30f01" "234976f82b2d64c6d2da3bca061d9f09b46e1496f02451fe02a4c707fab32321" "17fd8388e49d3055185e817ed3a2b7c955a2dda92b990f475c14a8e1d97dbe4b" "f0e69da2cf73c7f153fc09ed3e0ba6e1fd670fec09b8a6a8ed7b4f9efea3b501" "73ae6088787f6f72ef52f19698b25bc6f0edf47b9e677bf0a85e3a1e8a7a3b17" "75c0b1d2528f1bce72f53344939da57e290aa34bea79f3a1ee19d6808cb55149" "3f04f37604c5f5cc3c71bc1a4a604ed8be340d0f150946b25658e403ccbad6d2" "01d8c9140c20e459dcc18addb6faebd7803f7d6c46d626c7966d3f18284c4502" "1dd2d01010a9ae1f54775abceb080e231b6f9c781c5282b25b8c4edd3f3a14e0" "0240d45644b370b0518e8407f5990a243c769fb0150a7e74297e6f7052a04a72" "d3a86848a5e9bf123f3dd3bf82ab96995837b50f780dd7d5f65dc72c2b81a955" "6dbd0dd4c344f1ca534422cc5a1fd3ed822dcde947ae983948b70c7284a0ed33" "ced74ff794aad9ac93266bf9a9a92c5641c01b05715c6862e30459a24844eec9" "fe6fb0cb1aa50dc563d81aad98c470a30f4e89db6d55a108f1083f33317ad413" "83279c1d867646c5eea8a804a67a23e581b9b3b67f007e7831279ed3a4de9466" "8a36587d6cbcc30c85372568ed29d45ec393a32e3c779cba8cfd5fade229025d" "113ae6902d98261317b5507e55ac6e7758af81fc4660c34130490252640224a2" "3539b3cc5cbba41609117830a79f71309a89782f23c740d4a5b569935f9b7726" "9f3a4edb56d094366afed2a9ba3311bbced0f32ca44a47a765d8ef4ce5b8e4ea" default)))
+ '(fill-column 80)
+ '(indent-tabs-mode nil)
+ '(js-indent-level 2)
+ '(require-final-newline t)
+ '(show-paren-mode t)
+ '(show-trailing-whitespace t)
+ '(tab-always-indent t)
+ '(tab-width 4))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Make the sequence "C-x w" execute the 'what-line' command,
+;; which prints the current line number in the echo area.
+(global-set-key "\C-xw" 'what-line)
+
+;; Make the sequence "C-x C-b" execute bs-show (buffer selection)
+(global-set-key (kbd "C-x C-b") 'bs-show)
+
+;; Make F1 invoke help
+(global-set-key [f1] 'help-command)
+
+;; Make F2 invoke undo
+(global-set-key [f2] 'undo)
+
+;; Make searches case sensitive by default
+(setq-default case-fold-search nil)
+
+;; Turn on Line Number mode
+(setq linum-format " %d ")
+(global-linum-mode 1)
+
+;; Turn on Auto Fill mode automatically in Text mode and related modes.
+;; Auto Fill mode breaks lines automatically at spaces whenever they
+;; get longer than the desired width.
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; select font
+(add-to-list 'default-frame-alist '(font .  "Dejavu Sans Mono-10" ))
+(set-face-attribute 'default t :font  "Dejavu Sans Mono-10" )
+
+;; inhibit startup screen
+(setq inhibit-startup-message t)
+
+;; Turn off toolbar
+(tool-bar-mode -1)
+
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; set column enforce mode
+(add-hook 'text-mode-hook 'column-enforce-mode)
+(add-hook 'prog-mode-hook 'column-enforce-mode)
+
+;; set js2 mode, a better js mode for emacs
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+;; associate json files with js mode
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+;; configure auto pairs in prog mode
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+
+;; enable auto-complete
+(add-hook 'prog-mode-hook 'auto-complete-mode)
+
+;; update installed packages
+(defun rr-update-packages ()
+  "Update installed Emacs packages."
+  (interactive)
+  (package-list-packages)
+  (package-menu-mark-upgrades)
+  (package-menu-execute t)
+  (kill-buffer))
